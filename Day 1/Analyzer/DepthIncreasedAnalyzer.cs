@@ -21,14 +21,33 @@ namespace Day_1
       // init variables
       int previousValue = 0;
       int index = 0;
+      string message;
 
       // loop through data
       foreach (int value in _data)
       {
         if (index > 0)
         {
-          if (previousValue < value) Result += 1;
+          if (previousValue < value)
+          {
+            message = "increased";
+            Result += 1;
+          }
+          else if (previousValue > value)
+          {
+            message = "decreased";
+          }
+          else
+          {
+            message = "-";
+          }
         }
+        else
+        {
+          message = "initial";
+        }
+
+        Console.WriteLine($"{index} value:{value} ({message})");
         index++;
         previousValue = value;
       }

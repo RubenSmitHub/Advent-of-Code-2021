@@ -14,7 +14,7 @@ namespace Day_1
         
       Submarine sm = new Submarine(
         new ScannerByFileInput(Filepath),
-        new DepthIncreasedAnalyzer());
+        new AdvancedIncreasedAnalyzer());
 
       sm.ScanArea();
 
