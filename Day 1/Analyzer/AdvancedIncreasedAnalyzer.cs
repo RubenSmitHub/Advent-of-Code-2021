@@ -4,59 +4,42 @@ using System.Collections.Generic;
 using System.Text;
 
   class AdvancedIncreasedAnalyzer : IAnalyzer
-  {
-    private List<int> _data;
+{
+  private int prevAvg = 0;
+  private List<int> _data;
 
     public void SetData(List<int> Data)
     {
       _data = Data;
     }
 
-    public void Analyze()
+  public void Analyze()
+  {
+    Result = 0;
+    if (_data == null) return;
+
+    // init variables
+    int[] averageData = new int[_data.Count];
+    _data.CopyTo(averageData);
+    prevAvg = 0;
+
+    for (int i = 0; i < _data.Count - 2; i++)
     {
-      Result = 0;
-      if (_data == null) return;
-
-      // init variables
-      int previousValue = 0;
-      int index = 0;
-      string message;
-
-      int[] averageData = new int[_data.Count];
-      _data.CopyTo(averageData);
+      int avg = Sum(averageData[i], averageData[i+1], averageData[i+2]);
 
 
-      // loop through data
-      foreach (int value in _data)
+      if (i > 0)
       {
-        int sum = Sum(averageData[index], averageData[index + 1], averageData[index + 2]);
-
-        if (index > 0)
+        if (prevAvg < avg)
         {
-          if (previousValue < value)
-          {
-            message = "increased";
-            Result += 1;
-          }
-          else if (previousValue > value)
-          {
-            message = "decreased";
-          }
-          else
-          {
-            message = "-";
-          }
+          Result += 1;
         }
-        else
-        {
-          message = "initial";
-        }
-
-        Console.WriteLine($"{index} value:{value} ({message})");
-        index++;
-        previousValue = value;
       }
+
+      prevAvg = avg;
     }
+
+  }
 
     public int Result { get; set; }
 
