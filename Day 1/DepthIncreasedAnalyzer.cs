@@ -29,6 +29,7 @@ namespace Day_1
         {
           if (previousValue < value) Result += 1;
         }
+        index++;
         previousValue = value;
       }
     }

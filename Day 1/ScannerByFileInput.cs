@@ -25,8 +25,7 @@ namespace Day_1
     {
       ScanResults.Clear();
 
-      IEnumerable<string> lines = File.ReadLines(_filepath);
-      foreach(string line in lines)
+      foreach(string line in File.ReadLines(_filepath))
       {
         ScanResults.Add(int.Parse(line));
       }
