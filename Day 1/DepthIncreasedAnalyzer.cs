@@ -2,17 +2,39 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Day_1.Analyzer
+namespace Day_1
 {
   public class DepthIncreasedAnalyzer : IAnalyzer
   {
-    public DepthIncreasedAnalyzer(List<int> measurements)
-    {
+    private List<int> _data;
 
-    }
-    public int Analyze()
+    public void SetData(List<int> Data)
     {
-      throw new NotImplementedException();
+      _data = Data;
     }
+
+    public void Analyze()
+    {
+      Result = 0;
+      if (_data == null) return;
+
+      // init variables
+      int previousValue = 0;
+      int index = 0;
+
+      // loop through data
+      foreach (int value in _data)
+      {
+        if (index > 0)
+        {
+          if (previousValue < value) Result += 1;
+        }
+        previousValue = value;
+      }
+    }
+
+    public int Result { get; set; }
+
+
   }
 }

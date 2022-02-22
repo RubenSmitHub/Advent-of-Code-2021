@@ -7,14 +7,22 @@ namespace Day_1
 
     static void Main(string[] args)
     {
+      string Filepath = $@"{Environment.CurrentDirectory}\Data\Input.txt";
 
-      Submarine sm = new Submarine(new ScannerByFileInput(""));
+
+      Console.WriteLine(Filepath);
+        
+      Submarine sm = new Submarine(
+        new ScannerByFileInput(Filepath),
+        new DepthIncreasedAnalyzer());
 
       sm.ScanArea();
-      sm.AnalyzeMeasurements();
 
+      int answer;
+      answer = sm.AnalyzeMeasurements();
 
-      Console.WriteLine("Hello World!");      
+      Console.WriteLine($"The result is {answer}");
+  
       Console.ReadLine();
 
     }

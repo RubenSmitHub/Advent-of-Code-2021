@@ -2,10 +2,13 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Day_1.Analyzer
+namespace Day_1
 {
   public interface IAnalyzer
   {
-    int Analyze();
+    void SetData(List<int> Data);
+    void Analyze();
+
+    public int Result { get; set; }
   }
 }
