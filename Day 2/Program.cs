@@ -11,7 +11,7 @@ namespace Day_2
     {
       Submarine sm = new Submarine();
 
-      string Filepath = $@"{Environment.CurrentDirectory}\Data\Input.txt";
+      string Filepath = $@"{Environment.CurrentDirectory}\Data\input.txt";
 
       foreach(string line in File.ReadAllLines(Filepath))
       {

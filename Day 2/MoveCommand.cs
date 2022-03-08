@@ -39,15 +39,16 @@
       {
         case Direction.Forward:
           sm.LocationHorizontal += Distance;
+          sm.LocationVertical += sm.Aim * Distance;
           break;
         case Direction.Backward:
           sm.LocationHorizontal -= Distance;
           break;
         case Direction.Up:
-          sm.LocationVertical -= Distance;
+          sm.Aim -= Distance;
           break;
         case Direction.Down:
-          sm.LocationVertical += Distance;
+          sm.Aim += Distance;
           break;
       }
 

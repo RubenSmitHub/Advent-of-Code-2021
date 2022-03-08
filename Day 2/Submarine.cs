@@ -10,6 +10,8 @@ namespace Day_2
 
     public int LocationHorizontal { get; set; } = 0;
 
+    public int Aim { get; set; } = 0;
+
     public int LocationVertical { 
       get => locationVertical; 
       set { 
