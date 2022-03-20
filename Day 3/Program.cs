@@ -21,7 +21,8 @@ namespace Day_3
 
         for (int i = 0; i < 12; i++)
         {
-          string character = line.Substring(i, 1);
+          string character = line.Substring(11- i, 1);
+          Console.WriteLine($" {character}");
           int value = int.Parse(character);
           answers[i] += value;
 
