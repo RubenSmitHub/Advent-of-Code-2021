@@ -20,30 +20,54 @@ namespace Day_3
 
       int BitIndex = 0;
 
-      string[] lines = File.ReadAllLines(filepath);
+      string[] Oxygenlines = File.ReadAllLines(filepath);
+      
+      bool BitValue = true;
+
 
       do
       {
-        lines = ExtractMostCommonBitLines(lines, BitIndex);
+        Oxygenlines = ExtractMostCommonBitLines(Oxygenlines, BitIndex, BitValue, true);
         BitIndex += 1;
 
-      } while (lines.Length > 1 | BitIndex >= 12);
+      } while (Oxygenlines.Length > 1);
 
-      Console.WriteLine($"Final answer is {lines[0]}");
+      int oxygenRate = Convert.ToInt32(Oxygenlines[0], 2);
 
+
+      BitIndex = 0;
+
+      string[] CO2lines = File.ReadAllLines(filepath);
+
+      BitValue = true;
+
+      do
+      {
+        CO2lines = ExtractLeastCommonBitLines(CO2lines, BitIndex, BitValue, false);
+        BitIndex += 1;
+
+      } while (CO2lines.Length > 1);
+
+      int CO2rate = Convert.ToInt32(CO2lines[0], 2);
+
+
+
+
+      Console.WriteLine($"Oxygen generation rate is {oxygenRate}");
+      Console.WriteLine($"CO2 scrubber rate is {CO2rate}");
+      Console.WriteLine($"Answer {oxygenRate * CO2rate}");
     }
 
-    private static string[] ExtractMostCommonBitLines(string[] lines, int bitIndex)
+
+    private static string[] ExtractLeastCommonBitLines(string[] lines, int bitIndex, bool BitValue, bool RoundUp)
     {
       List<string> HighBitValues = new List<string>();
       List<string> LowBitValues = new List<string>();
 
-      BitArray bitarray;
 
       foreach (string line in lines)
       {
-        PopulateBitArray(out bitarray, line);
-        if (bitarray.Get(bitIndex))
+        if (line.Substring(bitIndex, 1) == "1")
         {
           HighBitValues.Add(line);
         }
@@ -53,28 +77,72 @@ namespace Day_3
         }
       }
 
-      if (HighBitValues.Count > LowBitValues.Count)
+      if (HighBitValues.Count == LowBitValues.Count)
       {
-        Console.WriteLine($"Most common is 1 at pos {bitIndex}");
-        return HighBitValues.ToArray();
+        Console.WriteLine($"Equal common bit used");
+        if (RoundUp)
+        {
+          return HighBitValues.ToArray();
+        }
+        else
+        {
+          return LowBitValues.ToArray();
+        }
+      }
+      else if (HighBitValues.Count > LowBitValues.Count)
+      {
+        Console.WriteLine($"Most common is 1 at pos {bitIndex} length={HighBitValues.Count}");
+        return LowBitValues.ToArray();
       }
       else
       {
-        Console.WriteLine($"Most common is 0 at pos {bitIndex}");
-        return LowBitValues.ToArray();
+        Console.WriteLine($"Most common is 0 at pos {bitIndex} length={LowBitValues.Count}");
+        return HighBitValues.ToArray();
       }
 
     }
 
-    private static void PopulateBitArray(out BitArray bitarray, string line)
+    private static string[] ExtractMostCommonBitLines(string[] lines, int bitIndex,bool BitValue, bool RoundUp)
     {
-      int[] intArray = new int[12];
-      for (int i = 0; i < 12; i++)
+      List<string> HighBitValues = new List<string>();
+      List<string> LowBitValues = new List<string>();
+
+
+      foreach (string line in lines)
       {
-        intArray[i] = int.Parse(line.Substring(11 - i, 1));
+        if (line.Substring(bitIndex,1) == "1")
+        {
+          HighBitValues.Add(line);
+        }
+        else
+        {
+          LowBitValues.Add(line);
+        }
       }
 
-      bitarray = new BitArray(intArray);
+      if (HighBitValues.Count == LowBitValues.Count)
+      {
+        Console.WriteLine($"Equal common bit used");
+        if (RoundUp)
+        {
+          return HighBitValues.ToArray();
+        }
+        else
+        {
+          return LowBitValues.ToArray();
+        }
+      }
+      else if (HighBitValues.Count > LowBitValues.Count)
+      {
+        Console.WriteLine($"Most common is 1 at pos {bitIndex} length={HighBitValues.Count}");
+        return HighBitValues.ToArray();
+      }
+      else
+      {
+        Console.WriteLine($"Most common is 0 at pos {bitIndex} length={LowBitValues.Count}");
+        return LowBitValues.ToArray();
+      }
+
     }
 
     private static void SolvePart1(string Filepath)
