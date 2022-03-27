@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Day_4.Models;
+using System;
+using System.Collections.Generic;
 
 namespace Day_4
 {
@@ -11,7 +13,23 @@ namespace Day_4
       BingoInputReader reader = new BingoInputReader();
       reader.ReadFromFile(Filepath);
 
-      Console.WriteLine("Hello World!");
+      List<BingoCard> cards = reader.BingoCards;
+      List<int> drawn = reader.DrawnNumbers;
+
+      Console.WriteLine($"Number of BingoCards {cards.Count}");
+      Console.WriteLine($"Number of drawns {drawn.Count}");
+
+      BingoGame game = new BingoGame(cards);
+
+      int TurnIndex = 0;
+      while (game.BingoInTheRoom() == false)
+      {
+        game.DrawnNumber(drawn[TurnIndex]);
+        TurnIndex++;
+      }
+      Console.WriteLine("BINGO!");
+      Console.WriteLine($"Answer = {drawn[TurnIndex - 1] * game.GetWinner().SumOfUnmarkedNumbers()}");
+      
     }
   }
 }
