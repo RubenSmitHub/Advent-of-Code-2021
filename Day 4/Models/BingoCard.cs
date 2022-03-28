@@ -29,6 +29,7 @@ namespace Day_4.Models
     /// </summary>
     public BingoCardField[,] Fields { get; set; } = new BingoCardField[5, 5];
 
+
     public BingoCardField[] GetRow(int index)
     {
       return new BingoCardField[5] {
@@ -84,29 +85,32 @@ namespace Day_4.Models
 
       foreach (BingoCardField item in selection)
       {
-        result = result & item.IsDrawn;
+        result &= item.IsDrawn;
       }
 
       return result;
     }
 
-    public bool HasBingo()
+    public bool HasBingo
     {
-      for (int i = 0; i < 5; i++)
+      get
       {
-        if (BingoInRange(GetRow(i)) | BingoInRange(GetColumn(i)))
+        for (int i = 0; i < 5; i++)
+        {
+          if (BingoInRange(GetRow(i)) | BingoInRange(GetColumn(i)))
+          {
+            return true;
+          }
+        }
+
+        if (BingoInRange(GetTopLeftButtomRightDiagonal()) |
+            BingoInRange(GetButtomLeftTopRightDiagonal()))
         {
           return true;
         }
-      }
 
-      if (BingoInRange(GetTopLeftButtomRightDiagonal()) |
-          BingoInRange(GetButtomLeftTopRightDiagonal()))
-      {
-        return true;
+        return false;
       }
-
-      return false;
     }
 
     public void DrawNumber(int number)

@@ -27,7 +27,7 @@ namespace Day_4
     {
       foreach (BingoCard card in Cards)
       {
-        if (card.HasBingo())
+        if (card.HasBingo)
         {
           return true;
         }
@@ -39,7 +39,7 @@ namespace Day_4
     {
       foreach (BingoCard card in Cards)
       {
-        if (card.HasBingo())
+        if (card.HasBingo)
         {
           return card;
         }
