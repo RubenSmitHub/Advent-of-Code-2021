@@ -7,8 +7,12 @@ namespace Day_5
     static void Main(string[] args)
     {
       Day5Solver Solver = new Day5Solver();
-      Solver.SolvePuzzles();
+      LineReader Reader = new LineReader();
 
+      Reader.ReadLinesFromFile(Solver.FilePath);
+
+      Solver.SolvePuzzles();
+      
       Console.WriteLine("End");
     }
   }
