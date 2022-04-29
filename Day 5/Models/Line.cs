@@ -1,18 +1,87 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Day_5.Models
 {
   public class Line
   {
-    public LinePoint[] Points { get; set; }
-
-    public Line(LinePoint Start, LinePoint End)
+    public int MinX
     {
-      Points = new LinePoint[] {Start, End};
+      get
+      {
+        if (StartPoint.X < EndPoint.X)
+        {
+          return StartPoint.X;
+        }
+        else
+        {
+          return EndPoint.X;
+        }
+      }
     }
 
+    public int MinY
+    {
+      get
+      {
+        if (StartPoint.Y < EndPoint.Y)
+        {
+          return StartPoint.Y;
+        }
+        else
+        {
+          return EndPoint.Y;
+        }
+      }
+    }
+
+    public int MaxX
+    {
+      get
+      {
+        if (StartPoint.X < EndPoint.X)
+        {
+          return EndPoint.X;
+        }
+        else
+        {
+          return StartPoint.X;
+        }
+      }
+    }
+
+    public int MaxY
+    {
+      get
+      {
+        if (StartPoint.Y < EndPoint.Y)
+        {
+          return EndPoint.Y;
+        }
+        else
+        {
+          return StartPoint.Y;
+        }
+      }
+    }
+
+    public Boolean IsHorizontal
+    {
+      get
+      {
+        return (StartPoint.Y == EndPoint.Y);
+      }
+    }
+
+    public Boolean IsVertical
+    {
+      get
+      {
+        return (StartPoint.X == EndPoint.X);
+      }
+    }
+
+    public Point StartPoint { get; set; } = new Point();
+    public Point EndPoint { get; set; } = new Point();
 
   }
 }

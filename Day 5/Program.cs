@@ -2,17 +2,22 @@
 
 namespace Day_5
 {
-  class Program
+  internal class Program
   {
-    static void Main(string[] args)
+    private static void Main(string[] args)
     {
-      Day5Solver Solver = new Day5Solver();
       LineReader Reader = new LineReader();
+      Day5Solver Solver = new Day5Solver(Reader);
 
       Reader.ReadLinesFromFile(Solver.FilePath);
 
+      Console.WriteLine($"MinX: {Reader.MinX}");
+      Console.WriteLine($"MinY: {Reader.MinY}");
+      Console.WriteLine($"MaxX: {Reader.MaxX}");
+      Console.WriteLine($"MaxY: {Reader.MaxY}");
+
       Solver.SolvePuzzles();
-      
+
       Console.WriteLine("End");
     }
   }
