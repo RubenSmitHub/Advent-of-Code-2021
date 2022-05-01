@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Day_5.Models
 {
@@ -83,5 +84,42 @@ namespace Day_5.Models
     public Point StartPoint { get; set; } = new Point();
     public Point EndPoint { get; set; } = new Point();
 
+    /// <summary>
+    /// Get all points on the line.
+    /// </summary>
+    public List<Point> Points 
+    {
+      get
+      {
+        List<Point> list = new List<Point>();
+
+        // Algorithm used:
+        // Bresenham's_line_algorithm
+        // link: https://en.wikipedia.org/wiki/Bresenham's_line_algorithm
+
+        int dx = StartPoint.X - EndPoint.X;
+        int dy = StartPoint.Y - EndPoint.Y;
+        int D = 2 * dy - dx;
+        int y = StartPoint.Y;
+
+
+        for (int x = StartPoint.X; x < EndPoint.X; x++)
+        {
+          list.Add(new Point(x, y));
+
+          if (D > 0)
+          {
+            y = y + 1;
+            D = D - 2 * dx;
+          }
+          
+          D = D + 2 * dy;
+
+        }
+
+
+        return list;
+      } 
+    }
   }
 }
