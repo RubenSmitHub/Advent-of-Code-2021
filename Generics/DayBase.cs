@@ -8,6 +8,7 @@ namespace Generics
   public abstract class DayBase
   {
     private string _filepath = $@"{Environment.CurrentDirectory}\Data\input.txt";
+    private string _sampleFilePath = $@"{Environment.CurrentDirectory}\Data\Sample.txt";
 
     /// <summary>
     /// Filepath to the input data.
@@ -23,6 +24,8 @@ namespace Generics
       get { return _filepath; }
       set { _filepath = value; }
     }
+
+    public string SampleFilePath { get => _sampleFilePath; set => _sampleFilePath = value; }
 
     /// <summary>
     /// Call this method to Run the SolvePart1 and SolvePart2 sub methods

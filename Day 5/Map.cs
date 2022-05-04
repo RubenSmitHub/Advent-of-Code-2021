@@ -35,7 +35,7 @@ namespace Day_5
       this.maxX = maxX;
       this.maxY = maxY;
 
-      Points = new int[maxX - minX, maxY - minY];
+      Points = new int[maxX - minX + 1, maxY - minY + 1];
     }
 
     public void DrawLine(Line line)
@@ -55,9 +55,9 @@ namespace Day_5
     {
       int result = 0;
 
-      for (int i = 0; i < maxX - minX; i++)
+      for (int i = 0; i <= maxX - minX; i++)
       {
-        for (int j = 0; j < maxY - minY; j++)
+        for (int j = 0; j <= maxY - minY; j++)
         {
           if (Points[i,j] >= minimalNumberOfCrossings)
           {

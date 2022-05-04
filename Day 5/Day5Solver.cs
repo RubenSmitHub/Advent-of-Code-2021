@@ -37,9 +37,9 @@ namespace Day_5
     public void ExportMap(string filename)
     {
       StringBuilder sb = new StringBuilder();
-      for (int y = 0; y < map.Height; y++)
+      for (int y = 0; y <= map.Height; y++)
       {
-        for (int x = 0; x < map.Width; x++)
+        for (int x = 0; x <= map.Width; x++)
         {
           if (map.Points[x,y] == 0)
           {

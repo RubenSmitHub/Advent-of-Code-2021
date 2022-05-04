@@ -146,7 +146,7 @@ namespace Day_5.Models
 
       int x = startPoint.X;
 
-      for (int y = startPoint.Y; y < endPoint.Y; y++)
+      for (int y = startPoint.Y; y <= endPoint.Y; y++)
       {
         result.Add(new Point(x, y));
 
@@ -181,7 +181,7 @@ namespace Day_5.Models
       int D = (2 * dy) - dx;
       int y = startPoint.Y;
 
-      for (int x = startPoint.X; x < endPoint.X; x++)
+      for (int x = startPoint.X; x <= endPoint.X; x++)
       {
         result.Add(new Point(x, y));
 
