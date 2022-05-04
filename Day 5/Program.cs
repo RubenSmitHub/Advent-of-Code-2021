@@ -18,6 +18,9 @@ namespace Day_5
 
       Solver.SolvePuzzles();
 
+      Console.WriteLine($"Answer part1: {Solver.AnswerPart1}");
+
+      Solver.ExportMap($@"{Environment.CurrentDirectory}\output.txt");
       Console.WriteLine("End");
     }
   }

@@ -12,6 +12,22 @@ namespace Day_5
 
     public int[,] Points { get; set; }
 
+    public int Width 
+    { get
+      {
+        return maxX - minX;
+      } 
+
+    }
+
+    public int Height
+    {
+      get
+      {
+        return maxY - minY;
+      }
+    }
+
     public Map(int minX, int minY, int maxX, int maxY)
     {
       this.minX = minX;
@@ -26,22 +42,16 @@ namespace Day_5
     {
       foreach (Point point in line.Points)
       {
-        PlotPoint(point.X, point.Y);
+        PlotPoint(point.X - minX, point.Y - minY);
       }
     }
 
     private void PlotPoint(int x, int y)
     {
-      if (x < minX | x > maxX | y < minY | y > maxY)
-      {
-        throw new ArgumentException("Point out of range of Map!");
-      }
-
       Points[x, y] += 1;
-
     }
 
-    public int GetNumberOverlappingPoints(int v)
+    public int GetNumberOverlappingPoints(int minimalNumberOfCrossings)
     {
       int result = 0;
 
@@ -49,7 +59,7 @@ namespace Day_5
       {
         for (int j = 0; j < maxY - minY; j++)
         {
-          if (Points[i,j] >= v)
+          if (Points[i,j] >= minimalNumberOfCrossings)
           {
             result++;
           }
