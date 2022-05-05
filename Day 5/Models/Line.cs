@@ -69,7 +69,7 @@ namespace Day_5.Models
       }
     }
 
-    public Boolean IsHorizontal
+    public bool IsHorizontal
     {
       get
       {
@@ -77,13 +77,31 @@ namespace Day_5.Models
       }
     }
 
-    public Boolean IsVertical
+    public bool IsVertical
     {
       get
       {
         return (StartPoint.X == EndPoint.X);
       }
     }
+
+    public bool IsDiagonal 
+    { get 
+      {
+        int dx = EndPoint.X - StartPoint.X;
+        int dy = EndPoint.Y - StartPoint.Y;
+
+        if (dy == 0)
+        {
+          return false;
+        }
+
+        int rc = dx / dy;
+
+        return Math.Abs(rc) == 1;
+      } 
+    }
+
 
     public Point StartPoint { get; set; } = new Point();
     public Point EndPoint { get; set; } = new Point();
@@ -100,6 +118,7 @@ namespace Day_5.Models
         return list;
       }
     }
+
 
     #region Bresenham's_line_algorithm
 

@@ -14,9 +14,13 @@ namespace Day_5
     }
 
     public int AnswerPart1 { get; set; } = 0;
+
+    public int AnswerPart2 { get; set; } = 0;
+
     public LineReader Reader { get; }
 
     public Map map { get; set; }
+
     public override void SolvePart1()
     {
       map = new Map(Reader.MinX, Reader.MinY, Reader.MaxX, Reader.MaxY);
@@ -55,5 +59,27 @@ namespace Day_5
 
       File.WriteAllText(filename, sb.ToString());
     }
+
+
+    public override void SolvePart2()
+    {
+      map = new Map(Reader.MinX, Reader.MinY, Reader.MaxX, Reader.MaxY);
+
+      foreach (var Line in Reader.Lines)
+      {
+        if (Line.IsHorizontal | Line.IsVertical | Line.IsDiagonal)
+        {
+          map.DrawLine(Line);
+        }
+
+        int Result = map.GetNumberOverlappingPoints(2);
+
+        AnswerPart2 = Result;
+      }
+    }
+
+
   }
+
+
 }

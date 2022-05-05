@@ -16,9 +16,11 @@ namespace Day_5
       Console.WriteLine($"MaxX: {Reader.MaxX}");
       Console.WriteLine($"MaxY: {Reader.MaxY}");
 
-      Solver.SolvePuzzles();
-
+      Solver.SolvePart1();
       Console.WriteLine($"Answer part1: {Solver.AnswerPart1}");
+
+      Solver.SolvePart2();
+      Console.WriteLine($"Answer part2: {Solver.AnswerPart2}");
 
       Solver.ExportMap($@"{Environment.CurrentDirectory}\output.txt");
       Console.WriteLine("End");
