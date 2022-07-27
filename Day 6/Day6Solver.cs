@@ -4,18 +4,38 @@ namespace Day_6
 {
   public class Day6Solver : DayBase
   {
+    public List<int> InputValues { get; set; } = new List<int>();
+
     public override void SolvePart1()
     {
       // How many lanternfish would there be after 80 days?
+      int result = SimulateNumberOfDays(80);
+
+      Console.WriteLine($"Final answer: {result}");
+      Console.WriteLine("End of part 1");
+    }
+
+    public override void SolvePart2()
+    {
+      // How many lanternfish would there be after 256 days?
+      int result = SimulateNumberOfDays(256);
+
+      Console.WriteLine($"Final answer: {result}");
+      Console.WriteLine("End of part 2");
+    }
+
+    private int SimulateNumberOfDays(int days)
+    {
+      // How many lanternfish would there be after x days?
       List<int> fishList = new List<int>(InputValues);
 
-      for (int day = 0; day < 80; day++)
+      for (int day = 0; day < days; day++)
       {
         fishList = SimulateDay(fishList);
         Console.WriteLine($"Day {day + 1}: {fishList.Count} fishes");
       }
 
-      Console.WriteLine($"Final answer: {fishList.Count}");
+      return fishList.Count;
     }
 
     private List<int> SimulateDay(List<int> input)
@@ -48,6 +68,7 @@ namespace Day_6
       return result;
     }
 
-    public List<int> InputValues { get; set; } = new List<int>();
+
+
   }
 }
