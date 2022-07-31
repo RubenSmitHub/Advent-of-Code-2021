@@ -18,12 +18,20 @@ namespace Day_6
     public override void SolvePart2()
     {
       // How many lanternfish would there be after 256 days?
-      int result = SimulateNumberOfDays(256);
+      int result = SimulateNumberOfDaysAlt(256);
 
       Console.WriteLine($"Final answer: {result}");
       Console.WriteLine("End of part 2");
     }
 
+    private int SimulateNumberOfDaysAlt(int days)
+    {
+      List<List<int>> fishes = new List<List<int>>();
+      fishes.Add(new List<int>());
+      
+      throw new NotImplementedException();
+
+    }
     private int SimulateNumberOfDays(int days)
     {
       // How many lanternfish would there be after x days?
